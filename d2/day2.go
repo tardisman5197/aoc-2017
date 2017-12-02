@@ -3,10 +3,10 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"os"
-  "strings"
-	"strconv"
 	"math"
+	"os"
+	"strconv"
+	"strings"
 )
 
 func check(e error) {
@@ -59,16 +59,16 @@ func part1(data [][]int) {
 	}()
 
 	// Calculate total
-	var total, done int = 0,0
+	var total, done int = 0, 0
 	for {
 		select {
-			case i := <-checksum:
-				done++
-				total += i
-				if done >= len(data){
-					fmt.Println(total)
-					return
-				}
+		case i := <-checksum:
+			done++
+			total += i
+			if done >= len(data) {
+				fmt.Println(total)
+				return
+			}
 		}
 	}
 }
