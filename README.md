@@ -5,8 +5,15 @@ My attempt at the [Advent of Code 2017](http://adventofcode.com/) in go.
 
 ## Runing Files
 
-`go run dayX.go <inputFile>`
+If an input file is required
+
+  `go run dayX.go <inputFile>`
+
+Else
+
+  `go run dayX.go`
 
 ## Days
 * [Day 1](https://github.com/tardisman5197/aoc2017/blob/master/d1/day1.go)
 * [Day 2](https://github.com/tardisman5197/aoc2017/blob/master/d2/day2.go)
+* [Day 3](https://github.com/tardisman5197/aoc2017/blob/master/d3/day3.go)
