@@ -4,6 +4,8 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"reflect"
+	"sort"
 	"strings"
 )
 
@@ -27,7 +29,7 @@ func main() {
 		data = append(data, row)
 	}
 	part1(data)
-	// part2(data)
+	part2(data)
 }
 
 func part1(data [][]string) {
@@ -40,6 +42,35 @@ func part1(data [][]string) {
 				used[word] = true
 			} else {
 				valid = false
+			}
+		}
+		if valid {
+			numValid++
+		}
+	}
+	fmt.Println(numValid)
+}
+
+func part2(data [][]string) {
+	var numValid = 0
+	for _, row := range data {
+		var valid = true
+		used := make(map[string]bool)
+		for _, word := range row {
+			for k := range used {
+				keySplit := strings.Split(k, "")
+				sort.Strings(keySplit)
+				wordSplit := strings.Split(word, "")
+				sort.Strings(wordSplit)
+				if reflect.DeepEqual(keySplit, wordSplit) {
+					valid = false
+					break
+				}
+			}
+			if valid {
+				used[word] = true
+			} else {
+				break
 			}
 		}
 		if valid {
