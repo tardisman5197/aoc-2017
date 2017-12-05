@@ -26,8 +26,10 @@ func main() {
 		row, _ := strconv.Atoi(s.Text())
 		data = append(data, row)
 	}
-	// part1(data)
-	part2(data)
+	data2 := make([]int, len(data))
+	copy(data2, data)
+	part1(data)
+	part2(data2)
 }
 
 func part1(data []int) {
