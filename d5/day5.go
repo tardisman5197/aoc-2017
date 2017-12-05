@@ -40,10 +40,10 @@ func part1(data []int) {
 		data[index]++
 		index += currentValue
 		if index >= len(data) || index < 0 {
-			break
+			fmt.Println(jumps)
+			return
 		}
 	}
-	fmt.Println(jumps)
 }
 
 func part2(data []int) {
@@ -58,8 +58,8 @@ func part2(data []int) {
 		}
 		index += currentValue
 		if index >= len(data) || index < 0 {
-			break
+			fmt.Println(jumps)
+			return
 		}
 	}
-	fmt.Println(jumps)
 }
