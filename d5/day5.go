@@ -20,13 +20,14 @@ func main() {
 	defer f.Close()
 
 	// Parse file
-	data := make([]int, 0)
+	var data []int
 	s := bufio.NewScanner(f)
 	for s.Scan() {
 		row, _ := strconv.Atoi(s.Text())
 		data = append(data, row)
 	}
-	part1(data)
+	// part1(data)
+	part2(data)
 }
 
 func part1(data []int) {
@@ -35,6 +36,24 @@ func part1(data []int) {
 		jumps++
 		currentValue := data[index]
 		data[index]++
+		index += currentValue
+		if index >= len(data) || index < 0 {
+			break
+		}
+	}
+	fmt.Println(jumps)
+}
+
+func part2(data []int) {
+	var jumps, index = 0, 0
+	for {
+		jumps++
+		currentValue := data[index]
+		if currentValue >= 3 {
+			data[index]--
+		} else {
+			data[index]++
+		}
 		index += currentValue
 		if index >= len(data) || index < 0 {
 			break
