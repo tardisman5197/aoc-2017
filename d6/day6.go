@@ -42,7 +42,7 @@ func main() {
 func part1(data []int) ([]int, []int) {
 	past := make([][]int, 0)
 	for {
-		// Get Lowest
+		// Get Highest
 		var highest = 0
 		for i, bank := range data {
 			if bank > data[highest] {
@@ -76,7 +76,7 @@ func part2(data []int) {
 	var cycles = 0
 	data, pastBank := part1(data)
 	for {
-		// Get Lowest
+		// Get Highest
 		var highest = 0
 		for i, bank := range data {
 			if bank > data[highest] {
