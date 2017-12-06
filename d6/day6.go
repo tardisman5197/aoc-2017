@@ -35,11 +35,13 @@ func main() {
 	dataC := make([]int, len(data))
 	copy(dataC, data)
 
-	part1(data)
-	part2(dataC)
+	result, _, _ := part1(data)
+	fmt.Println(result)
+	result = part2(dataC)
+	fmt.Println(result)
 }
 
-func part1(data []int) ([]int, []int) {
+func part1(data []int) (int, []int, []int) {
 	past := make([][]int, 0)
 	for {
 		// Get Highest
@@ -60,8 +62,7 @@ func part1(data []int) ([]int, []int) {
 		// Check for repeat
 		for _, bank := range past {
 			if reflect.DeepEqual(data, bank) {
-				fmt.Println(len(past) + 1)
-				return data, bank
+				return len(past) + 1, data, bank
 			}
 		}
 
@@ -72,9 +73,9 @@ func part1(data []int) ([]int, []int) {
 	}
 }
 
-func part2(data []int) {
+func part2(data []int) int {
 	var cycles = 0
-	data, pastBank := part1(data)
+	_, data, pastBank := part1(data)
 	for {
 		// Get Highest
 		var highest = 0
@@ -93,8 +94,7 @@ func part2(data []int) {
 
 		// Check for repeat
 		if reflect.DeepEqual(data, pastBank) {
-			fmt.Println(cycles + 1)
-			return
+			return cycles + 1
 		}
 
 		cycles++
