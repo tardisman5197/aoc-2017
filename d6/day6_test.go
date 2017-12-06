@@ -1,51 +1,30 @@
 package main
 
 import (
-	"bufio"
-	"os"
-	"strconv"
-	"strings"
+	"reflect"
 	"testing"
 )
 
-func TestPart1(t *testing.T) {
-	f, err := os.Open("test.txt")
-	check(err)
-	defer f.Close()
-
-	// Parse file
-	data := make([]int, 0)
-	s := bufio.NewScanner(f)
-	for s.Scan() {
-		row := strings.Fields(s.Text())
-		for _, num := range row {
-			val, _ := strconv.Atoi(num)
-			data = append(data, val)
-		}
+func TestReadFile(t *testing.T) {
+	result := readFile("test.txt")
+	expected := []int{0, 2, 7, 0}
+	if !reflect.DeepEqual(result, expected) {
+		t.Fatalf("Read File wrong: %d expeceted %d", result, expected)
 	}
+}
+
+func TestPart1(t *testing.T) {
+	data := readFile("test.txt")
 	result, _, _ := part1(data)
 	if result != 5 {
-		t.Fatalf("Part 1 wrong: %d", result)
+		t.Fatalf("Part 1 wrong: %d expected 5", result)
 	}
 }
 
 func TestPart2(t *testing.T) {
-	f, err := os.Open("test.txt")
-	check(err)
-	defer f.Close()
-
-	// Parse file
-	data := make([]int, 0)
-	s := bufio.NewScanner(f)
-	for s.Scan() {
-		row := strings.Fields(s.Text())
-		for _, num := range row {
-			val, _ := strconv.Atoi(num)
-			data = append(data, val)
-		}
-	}
+	data := readFile("test.txt")
 	result := part2(data)
 	if result != 4 {
-		t.Fatalf("Part 1 wrong: %d", result)
+		t.Fatalf("Part 2 wrong: %d expected 4", result)
 	}
 }

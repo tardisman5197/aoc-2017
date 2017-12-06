@@ -15,9 +15,9 @@ func check(e error) {
 	}
 }
 
-func main() {
+func readFile(filename string) []int {
 	// Open File
-	f, err := os.Open(os.Args[1])
+	f, err := os.Open(filename)
 	check(err)
 	defer f.Close()
 
@@ -31,7 +31,10 @@ func main() {
 			data = append(data, val)
 		}
 	}
-
+	return data
+}
+func main() {
+	data := readFile(os.Args[1])
 	dataC := make([]int, len(data))
 	copy(dataC, data)
 
