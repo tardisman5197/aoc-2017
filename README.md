@@ -20,3 +20,4 @@ Else
 * [Day 4](https://github.com/tardisman5197/aoc2017/blob/master/d4/day4.go)
 * [Day 5](https://github.com/tardisman5197/aoc2017/blob/master/d5/day5.go)
 * [Day 6](https://github.com/tardisman5197/aoc2017/blob/master/d6/day6.go)
+* [Day 7](https://github.com/tardisman5197/aoc2017/blob/master/d7/day7.go)
