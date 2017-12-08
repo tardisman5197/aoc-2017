@@ -20,6 +20,14 @@ func TestReadFile(t *testing.T) {
 	}
 }
 
+func TestConditionMet(t *testing.T) {
+	registers := make(map[string]int)
+	result := conditionMet(&registers, condition{"a", "==", 0})
+	if !result {
+		t.Fatalf("conditionMet: %v != true", result)
+	}
+}
+
 func TestPart1(t *testing.T) {
 	result := part1(readFile("test.txt"))
 	expected := 1
@@ -29,5 +37,9 @@ func TestPart1(t *testing.T) {
 }
 
 func TestPart2(t *testing.T) {
-
+	result := part2(readFile("test.txt"))
+	expected := 10
+	if result != expected {
+		t.Fatalf("Part 2: %v != %v", result, expected)
+	}
 }
