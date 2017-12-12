@@ -33,6 +33,7 @@ func readFile(filename string) []int {
 	}
 	return data
 }
+
 func main() {
 	data := readFile(os.Args[1])
 	dataC := make([]int, len(data))
