@@ -13,8 +13,8 @@ func TestReadFile(t *testing.T) {
 	}
 
 	expected = scanner{depth: 4, area: 4}
-	if !reflect.DeepEqual(result[4], expected) {
-		t.Errorf("Read File: %v != %v", result[4], expected)
+	if !reflect.DeepEqual(result[2], expected) {
+		t.Errorf("Read File: %v != %v", result[2], expected)
 	}
 }
 

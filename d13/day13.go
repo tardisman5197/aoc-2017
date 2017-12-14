@@ -19,7 +19,7 @@ func main() {
 	fmt.Println(part2(&input))
 }
 
-func readFile(filename string) map[int]scanner {
+func readFile(filename string) []scanner {
 	// Open File
 	f, err := os.Open(filename)
 	if err != nil {
@@ -28,20 +28,19 @@ func readFile(filename string) map[int]scanner {
 	defer f.Close()
 
 	// Parse file
-	data := make(map[int]scanner)
+	data := make([]scanner, 0)
 	s := bufio.NewScanner(f)
 	for s.Scan() {
 		row := strings.Fields(s.Text())
 		var currentScanner scanner
 		currentScanner.depth, _ = strconv.Atoi(row[0][:len(row[0])-1])
 		currentScanner.area, _ = strconv.Atoi(row[1])
-		data[currentScanner.depth] = currentScanner
+		data = append(data, currentScanner)
 	}
-	//fmt.Println(data)
 	return data
 }
 
-func part1(scanners *map[int]scanner) int {
+func part1(scanners *[]scanner) int {
 	var severity = 0
 	for _, scanner := range *scanners {
 		if scanner.depth%(2*(scanner.area-1)) == 0 {
@@ -51,7 +50,7 @@ func part1(scanners *map[int]scanner) int {
 	return severity
 }
 
-func isCaught(scanners *map[int]scanner, delay int) bool {
+func isCaught(scanners *[]scanner, delay int) bool {
 	for _, scanner := range *scanners {
 		if (scanner.depth+delay)%(2*(scanner.area-1)) == 0 {
 			return true
@@ -60,7 +59,7 @@ func isCaught(scanners *map[int]scanner, delay int) bool {
 	return false
 }
 
-func part2(scanners *map[int]scanner) int {
+func part2(scanners *[]scanner) int {
 	var delay = 0
 	for {
 		if !isCaught(scanners, delay) {
