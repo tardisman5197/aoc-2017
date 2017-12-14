@@ -15,7 +15,8 @@ type program struct {
 
 func main() {
 	data := readFile(os.Args[1])
-	fmt.Println(part1(data))
+	fmt.Println(part1(&data))
+	fmt.Println(part2(&data))
 }
 
 func check(e error) {
@@ -76,12 +77,31 @@ func inGroup(data *map[int]program, destination, start, parent int) bool {
 	return false
 }
 
-func part1(data map[int]program) int {
+func part1(data *map[int]program) int {
 	var size = 0
-	for key := range data {
-		if inGroup(&data, 0, key, -1) {
+	for key := range *data {
+		if inGroup(data, 0, key, -1) {
 			size++
 		}
 	}
 	return size
+}
+
+func part2(data *map[int]program) int {
+	var groups = 0
+	discovered := make(map[int]bool)
+	for key := range *data {
+		if !discovered[key] {
+			for value := range *data {
+				if !discovered[value] {
+					if inGroup(data, key, value, -1) {
+						discovered[value] = true
+					}
+				}
+			}
+			groups++
+		}
+	}
+
+	return groups
 }

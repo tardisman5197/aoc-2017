@@ -20,9 +20,19 @@ func TestReadFile(t *testing.T) {
 }
 
 func TestPart1(t *testing.T) {
-	result := part1(readFile("test.txt"))
+	data := readFile("test.txt")
+	result := part1(&data)
 	expected := 6
 	if !reflect.DeepEqual(result, expected) {
 		t.Fatalf("Part 1: %v != %v", result, expected)
+	}
+}
+
+func TestPart2(t *testing.T) {
+	data := readFile("test.txt")
+	result := part2(&data)
+	expected := 2
+	if !reflect.DeepEqual(result, expected) {
+		t.Fatalf("Part 2: %v != %v", result, expected)
 	}
 }
