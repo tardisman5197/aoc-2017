@@ -62,11 +62,15 @@ func readFile(filename string) map[int]program {
 	return data
 }
 
-func inGroup(data map[int]program, destination, start int) bool {
-	for _, value := range data[start].pipes {
-		inGroup(data, destination, value)
-		if value == destination {
-			return true
+func inGroup(data *map[int]program, destination, start, parent int) bool {
+	if start == destination {
+		return true
+	}
+	for _, value := range (*data)[start].pipes {
+		if value != parent {
+			if inGroup(data, destination, value, start) {
+				return true
+			}
 		}
 	}
 	return false
@@ -74,8 +78,8 @@ func inGroup(data map[int]program, destination, start int) bool {
 
 func part1(data map[int]program) int {
 	var size = 0
-	for key, _ := range data {
-		if inGroup(data, 0, key) {
+	for key := range data {
+		if inGroup(&data, 0, key, -1) {
 			size++
 		}
 	}
